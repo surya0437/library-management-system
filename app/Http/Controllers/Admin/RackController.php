@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Author;
+use App\Models\Rack;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class AuthorController extends Controller
+class RackController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $authors = Author::all();
-        return view('Admin.Author.index', compact('authors'));
+        $racks = Rack::all();
+        return view('Admin.Rack.index', compact('racks'));
     }
 
     /**
@@ -33,23 +33,23 @@ class AuthorController extends Controller
     {
         try {
             $request->validate([
-                "name" => "required|string|max:255",
+                "rackNo" => "required|string|max:255",
             ],);
 
-            $author = new Author();
-            $author->name = $request->name;
+            $rack = new Rack();
+            $rack->rackNo = $request->rackNo;
 
-            $author->save();
+            $rack->save();
             // toast('Record created successfully', 'success');
             Alert::success('Success', 'Record created successfully');
-            return redirect()->route('author.index');
+            return redirect()->route('rack.index');
         } catch (\Illuminate\Validation\ValidationException $e) {
             $errors = $e->errors();
 
             $error = collect($errors)->flatten()->first();
 
             Alert::error('Error!', $error);
-            return redirect()->route('author.index');
+            return redirect()->route('rack.index');
         }
     }
 
@@ -66,8 +66,8 @@ class AuthorController extends Controller
      */
     public function edit(string $id)
     {
-        $author = Author::find($id);
-        return view('Admin.Author.edit', compact('author'));
+        $rack = Rack::find($id);
+        return view('Admin.Rack.edit', compact('rack'));
     }
 
     /**
@@ -77,24 +77,24 @@ class AuthorController extends Controller
     {
         try {
             $request->validate([
-                "name" => "required|string",
+                "rackNo" => "required|string",
             ],);
 
-            $author = Author::find($id);
-            $author->name = $request->name;
-            $author->status = $request->status;
+            $rack = Rack::find($id);
+            $rack->rackNo = $request->rackNo;
+            $rack->status = $request->status;
 
-            $author->update();
+            $rack->update();
             // toast('Record created successfully', 'success');
             Alert::success('Success', 'Record updated successfully');
-            return redirect()->route('author.edit', $id);
+            return redirect()->route('rack.edit', $id);
         } catch (\Illuminate\Validation\ValidationException $e) {
             $errors = $e->errors();
 
             $error = collect($errors)->flatten()->first();
 
             Alert::error('Error!', $error);
-            return redirect()->route('author.edit', $id);
+            return redirect()->route('rack.edit', $id);
         }
     }
 
@@ -103,9 +103,9 @@ class AuthorController extends Controller
      */
     public function destroy(string $id)
     {
-        $author = Author::find($id);
-        $author->delete();
+        $rack = Rack::find($id);
+        $rack->delete();
         Alert::success('Success', 'Record deleted successfully');
-        return redirect()->route('author.index');
+        return redirect()->route('rack.index');
     }
 }

@@ -34,11 +34,10 @@ class CategoryController extends Controller
     {
         try {
             $request->validate([
-                "title" => "required|string|unique:categories,title",
+                "title" => "required|string|max:255|unique:categories,title",
             ],);
 
             $category = new Category();
-            $category->id = 'cat-' . rand(100000, 999999);
             $category->title = $request->title;
 
             $category->save();
