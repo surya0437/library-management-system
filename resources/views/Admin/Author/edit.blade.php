@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout :PageTitle="'Edit Author'">
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">

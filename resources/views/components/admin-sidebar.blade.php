@@ -101,7 +101,13 @@
 
 
                 <li class="{{ Request::routeIs('book*') ? 'active' : '' }}">
-                    <a href="{{ route('book.index') }}"><img src="/assets/img/icons/rack.svg" alt="img"><span>
+                    <a href="{{ route('book.index') }}"><img src="/assets/img/icons/book.svg" alt="img"><span>
+                            Books</span> </a>
+                </li>
+
+
+                <li class="{{ Request::routeIs('UserBook*') ? 'active' : '' }}">
+                    <a href="{{ route('UserBook') }}"><img src="/assets/img/icons/book.svg" alt="img"><span>
                             Books</span> </a>
                 </li>
 

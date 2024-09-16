@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout :PageTitle="'Category'">
 
     <div class="col-sm-12">
         <div class="card">
